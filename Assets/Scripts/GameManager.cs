@@ -49,5 +49,4 @@ public class GameManager : MonoBehaviour
         player.transform.position = pos;
         player.VelocityZero();
     }
-
 }

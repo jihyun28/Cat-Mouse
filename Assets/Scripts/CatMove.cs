@@ -40,6 +40,11 @@ public class CatMove : MonoBehaviour
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
         }
 
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("DOWN ARROW");
+        }
+
         //Animation
         if(Mathf.Abs(rigid.velocity.x) < 0.3) // 절대값 = abs
         {
@@ -81,10 +86,14 @@ public class CatMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log("충돌");
+
         // 스테이지 이동(포탈 종류에 따라)
         portal = collision.gameObject.GetComponent<Portal>();
 
-        if (collision.gameObject.layer == 10 && rigid.velocity.y < 0)
+        //rigid.velocity.y < 1
+        //Input.GetKeyDown(KeyCode.Z)
+        if (collision.gameObject.layer == 10 && rigid.velocity.y < 5)
         {
             switch (portal.type)
             {
@@ -117,4 +126,5 @@ public class CatMove : MonoBehaviour
     {
         rigid.velocity = Vector2.zero;
     }
+
 }
