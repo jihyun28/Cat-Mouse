@@ -8,25 +8,45 @@ public class GameManager : MonoBehaviour
     public CatMove player;
     public GameObject[] Stages;
 
-    public void NextStage()
+    public void NextStage(Vector3 pos, string type) // portal Type
     {
-        Stages[stageIndex].SetActive(false);
-        stageIndex++;
-        Stages[stageIndex].SetActive(true);
-        PlayerReposition();
+        switch (type)
+        {
+            case "InClass":
+                Stages[0].SetActive(false);
+                Stages[1].SetActive(true);
+                PlayerReposition(pos);
+                break;
+            case "InArtRoom":
+                Stages[0].SetActive(false);
+                Stages[2].SetActive(true);
+                PlayerReposition(pos);
+                break;
+            case "OutClass":
+                Stages[1].SetActive(false);
+                Stages[0].SetActive(true);
+                PlayerReposition(pos);
+                break;
+            case "OutArt":
+                Stages[2].SetActive(false);
+                Stages[0].SetActive(true);
+                PlayerReposition(pos);
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerReposition();
+            player.transform.position = new Vector3(3, 5, 0);
+            player.VelocityZero();
         }
     }
 
-    void PlayerReposition()
+    void PlayerReposition(Vector3 pos)
     {
-        player.transform.position = new Vector3(3, 5, 0);
+        player.transform.position = pos;
         player.VelocityZero();
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CatMove : MonoBehaviour
 {
     public GameManager gameManager;
+    public Portal portal;
     public float maxSpeed;
     public float jumpPower;
     Rigidbody2D rigid;
@@ -16,6 +17,7 @@ public class CatMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        
     }
 
     private void Update()
@@ -79,12 +81,36 @@ public class CatMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Room")
-        {
-            //NextStage
-            gameManager.NextStage();
-        }
+        // 스테이지 이동(포탈 종류에 따라)
+        portal = collision.gameObject.GetComponent<Portal>();
 
+        if (collision.gameObject.layer == 10 && rigid.velocity.y < 0)
+        {
+            switch (portal.type)
+            {
+                case "InClass":
+                    Vector3 classRoom1 = portal.portal.transform.position;
+                    Vector3 classPos1 = new Vector3(classRoom1.x + 4f, classRoom1.y, classRoom1.z);
+                    //transform.position = classPos1;
+                    gameManager.NextStage(classPos1, portal.type);
+                    break;
+                case "InArtRoom":
+                    Vector3 classRoom2 = portal.portal.transform.position;
+                    Vector3 classPos2 = new Vector3(classRoom2.x + 4f, classRoom2.y, classRoom2.z);
+                    gameManager.NextStage(classPos2,portal.type);
+                    break;
+                case "OutClass":
+                    Vector3 classRoom3 = portal.portal.transform.position;
+                    Vector3 classPos3 = new Vector3(classRoom3.x + 4f, classRoom3.y, classRoom3.z);
+                    gameManager.NextStage(classPos3,portal.type);
+                    break;
+                case "OutArt":
+                    Vector3 classRoom4 = portal.portal.transform.position;
+                    Vector3 classPos4 = new Vector3(classRoom4.x + 4f, classRoom4.y, classRoom4.z);
+                    gameManager.NextStage(classPos4, portal.type);
+                    break;
+            }
+        }
     }
 
     public void VelocityZero()

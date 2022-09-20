@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\CatMove.cs" />
+    <Compile Include="Assets\Scripts\Portal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
