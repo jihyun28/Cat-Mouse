@@ -11,24 +11,30 @@ public class CatMove : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
+    int jumpCount = 2;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        jumpCount = 0;
         
     }
 
     private void Update()
     {
-        //Jump
-        if (Input.GetButtonDown("Jump")) //&& !anim.GetBool("isJumping") = 무한 점프 막기
+        //Jump -> 2단점프
+        if(jumpCount > 0)
         {
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            anim.SetBool("isJumping", true);
+            if (Input.GetButtonDown("Jump")) //&& !anim.GetBool("isJumping") = 무한 점프 막기
+            {
+                rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                anim.SetBool("isJumping", true);
+                jumpCount--;
+            }
         }
-
+        
         if (Input.GetButtonUp("Horizontal")) //버튼에서 손을 때는 경우, 속력을 줄임
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
@@ -78,6 +84,7 @@ public class CatMove : MonoBehaviour
                 {
                     //Debug.Log(rayhit.collider.name);
                     anim.SetBool("isJumping", false);
+                    jumpCount = 2;
                 }
             }
         }
@@ -93,6 +100,7 @@ public class CatMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         //Debug.Log("충돌");
 
         // 스테이지 이동(포탈 종류에 따라)
@@ -104,6 +112,7 @@ public class CatMove : MonoBehaviour
         {
             switch (portal.type)
             {
+                // 교실 이동
                 case "InClass":
                     Vector3 classRoom1 = portal.portal.transform.position;
                     Vector3 classPos1 = new Vector3(classRoom1.x + 4f, classRoom1.y, classRoom1.z);
@@ -124,6 +133,50 @@ public class CatMove : MonoBehaviour
                     Vector3 classRoom4 = portal.portal.transform.position;
                     Vector3 classPos4 = new Vector3(classRoom4.x + 4f, classRoom4.y, classRoom4.z);
                     gameManager.NextStage(classPos4, portal.type);
+                    break;
+
+                // 층 이동 포탈(위로)
+                case "Go2f":
+                    Vector3 Go2F = portal.portal.transform.position;
+                    Vector3 Pos2f = new Vector3(Go2F.x + 6f, Go2F.y, Go2F.z);
+                    transform.position = Pos2f;
+                    break;
+                case "Go3f":
+                    Vector3 Go3F = portal.portal.transform.position;
+                    Vector3 Pos3f = new Vector3(Go3F.x + 6f, Go3F.y, Go3F.z);
+                    transform.position = Pos3f;
+                    break;
+                case "Go4f":
+                    Vector3 Go4F = portal.portal.transform.position;
+                    Vector3 Pos4f = new Vector3(Go4F.x + 6f, Go4F.y, Go4F.z);
+                    transform.position = Pos4f;
+                    break;
+                case "Go5f":
+                    Vector3 Go5F = portal.portal.transform.position;
+                    Vector3 Pos5f = new Vector3(Go5F.x + 6f, Go5F.y, Go5F.z);
+                    transform.position = Pos5f;
+                    break;
+
+                // 층 이동 포탈(아래로)
+                case "Down2f":
+                    Vector3 Down2F = portal.portal.transform.position;
+                    Vector3 PosDown2f = new Vector3(Down2F.x + 6f, Down2F.y, Down2F.z);
+                    transform.position = PosDown2f;
+                    break;
+                case "Down3f":
+                    Vector3 Down3F = portal.portal.transform.position;
+                    Vector3 PosDown3f = new Vector3(Down3F.x + 6f, Down3F.y, Down3F.z);
+                    transform.position = PosDown3f;
+                    break;
+                case "Down4f":
+                    Vector3 Down4F = portal.portal.transform.position;
+                    Vector3 PosDown4f = new Vector3(Down4F.x + 6f, Down4F.y, Down4F.z);
+                    transform.position = PosDown4f;
+                    break;
+                case "Down5f":
+                    Vector3 Down5F = portal.portal.transform.position;
+                    Vector3 PosDown5f = new Vector3(Down5F.x + 6f, Down5F.y, Down5F.z);
+                    transform.position = PosDown5f;
                     break;
             }
         }

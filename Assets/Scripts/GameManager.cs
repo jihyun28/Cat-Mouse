@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     {
         switch (type)
         {
+            // 각 교실 포탈
             case "InClass":
                 Stages[0].SetActive(false);
                 Stages[1].SetActive(true);
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
