@@ -67,7 +67,7 @@ public class CatMove : MonoBehaviour
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
 
         // Landing Platform
-        if (rigid.velocity.y < 0)
+        if (rigid.velocity.y < 1)
         {
             Debug.DrawRay(rigid.position, Vector3.down * 3, Color.red);
             RaycastHit2D rayhit = Physics2D.Raycast(rigid.position, Vector3.down * 3, 3, LayerMask.GetMask("Platform"));
@@ -81,6 +81,13 @@ public class CatMove : MonoBehaviour
                 }
             }
         }
+
+        /*Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        viewPos.x = Mathf.Clamp01(viewPos.x);
+
+        Vector3 worldPos = Camera.main.ViewportToWorldPoint(viewPos);
+        transform.position = worldPos;*/
         
     }
 
@@ -93,7 +100,7 @@ public class CatMove : MonoBehaviour
 
         //rigid.velocity.y < 1
         //Input.GetKeyDown(KeyCode.Z)
-        if (collision.gameObject.layer == 10 && rigid.velocity.y < 5)
+        if (collision.gameObject.layer == 10 && rigid.velocity.y < 0)
         {
             switch (portal.type)
             {
@@ -120,6 +127,7 @@ public class CatMove : MonoBehaviour
                     break;
             }
         }
+
     }
 
     public void VelocityZero()
