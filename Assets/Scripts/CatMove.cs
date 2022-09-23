@@ -138,44 +138,44 @@ public class CatMove : MonoBehaviour
                 // 층 이동 포탈(위로)
                 case "Go2f":
                     Vector3 Go2F = portal.portal.transform.position;
-                    Vector3 Pos2f = new Vector3(Go2F.x + 6f, Go2F.y, Go2F.z);
+                    Vector3 Pos2f = new Vector3(Go2F.x - 3f, Go2F.y, Go2F.z);
                     transform.position = Pos2f;
                     break;
                 case "Go3f":
                     Vector3 Go3F = portal.portal.transform.position;
-                    Vector3 Pos3f = new Vector3(Go3F.x + 6f, Go3F.y, Go3F.z);
+                    Vector3 Pos3f = new Vector3(Go3F.x - 3f, Go3F.y, Go3F.z);
                     transform.position = Pos3f;
                     break;
                 case "Go4f":
                     Vector3 Go4F = portal.portal.transform.position;
-                    Vector3 Pos4f = new Vector3(Go4F.x + 6f, Go4F.y, Go4F.z);
+                    Vector3 Pos4f = new Vector3(Go4F.x -3f, Go4F.y, Go4F.z);
                     transform.position = Pos4f;
                     break;
                 case "Go5f":
                     Vector3 Go5F = portal.portal.transform.position;
-                    Vector3 Pos5f = new Vector3(Go5F.x + 6f, Go5F.y, Go5F.z);
+                    Vector3 Pos5f = new Vector3(Go5F.x - 3f, Go5F.y, Go5F.z);
                     transform.position = Pos5f;
                     break;
 
                 // 층 이동 포탈(아래로)
                 case "Down2f":
                     Vector3 Down2F = portal.portal.transform.position;
-                    Vector3 PosDown2f = new Vector3(Down2F.x + 6f, Down2F.y, Down2F.z);
+                    Vector3 PosDown2f = new Vector3(Down2F.x + 3f, Down2F.y, Down2F.z);
                     transform.position = PosDown2f;
                     break;
                 case "Down3f":
                     Vector3 Down3F = portal.portal.transform.position;
-                    Vector3 PosDown3f = new Vector3(Down3F.x + 6f, Down3F.y, Down3F.z);
+                    Vector3 PosDown3f = new Vector3(Down3F.x + 3f, Down3F.y, Down3F.z);
                     transform.position = PosDown3f;
                     break;
                 case "Down4f":
                     Vector3 Down4F = portal.portal.transform.position;
-                    Vector3 PosDown4f = new Vector3(Down4F.x + 6f, Down4F.y, Down4F.z);
+                    Vector3 PosDown4f = new Vector3(Down4F.x + 3f, Down4F.y, Down4F.z);
                     transform.position = PosDown4f;
                     break;
                 case "Down5f":
                     Vector3 Down5F = portal.portal.transform.position;
-                    Vector3 PosDown5f = new Vector3(Down5F.x + 6f, Down5F.y, Down5F.z);
+                    Vector3 PosDown5f = new Vector3(Down5F.x + 3f, Down5F.y, Down5F.z);
                     transform.position = PosDown5f;
                     break;
             }
