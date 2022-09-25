@@ -57,9 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Portal.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\CatMove.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MouseMove.cs" />
+    <Compile Include="Assets\Scripts\CatMove.cs" />
+    <Compile Include="Assets\Scripts\EatCheese.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public int stageIndex;
     public CatMove player;
     public GameObject[] Stages;
+
+    //생쥐 채력관리
+    public int totalPoint;
+    public int stagePoint;
+    public int health;
+    public Image[] UIHealth;
 
     public void NextStage(Vector3 pos, string type) // portal Type
     {
@@ -48,5 +55,19 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = pos;
         player.VelocityZero();
+    }
+
+    //생쥐 체력관리
+    public void HealthDown()
+    {
+        if (health > 0)
+        {
+            health--;
+            Destroy(UIHealth[health]);
+        }
+        else
+        {
+            Debug.Log("Mouse Out");
+        }
     }
 }
