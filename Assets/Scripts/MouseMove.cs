@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
+    int jumpCount = 2;
 
     void Awake()
     {
@@ -113,5 +114,125 @@ public class PlayerMove : MonoBehaviour
         {
             gameManager.HealthDown();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        //Debug.Log("충돌");
+
+        // 스테이지 이동(포탈 종류에 따라)
+        portal = collision.gameObject.GetComponent<Portal>();
+
+        //rigid.velocity.y < 1
+        //Input.GetKeyDown(KeyCode.Z)
+        if (collision.gameObject.layer == 10 && rigid.velocity.y < 0)
+        {
+            switch (portal.type)
+            {
+                // 일반 교실 IN
+                case "InClass":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass2f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass3f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass4f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass5f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+                // 특정 교실 IN
+                case "InArtRoom":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InMusicRoom":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+                // 일반 교실 OUT
+                case "OutClass":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass2f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass3f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass4f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass5f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+                // 특정 교실 OUT
+                case "OutArt":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutMusic":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+
+                // 층 이동 포탈(위로)
+                case "Go2f":
+                    Vector3 Go2F = portal.portal.transform.position;
+                    Vector3 Pos2f = new Vector3(Go2F.x - 3f, Go2F.y, Go2F.z);
+                    transform.position = Pos2f;
+                    break;
+                case "Go3f":
+                    Vector3 Go3F = portal.portal.transform.position;
+                    Vector3 Pos3f = new Vector3(Go3F.x - 3f, Go3F.y, Go3F.z);
+                    transform.position = Pos3f;
+                    break;
+                case "Go4f":
+                    Vector3 Go4F = portal.portal.transform.position;
+                    Vector3 Pos4f = new Vector3(Go4F.x - 3f, Go4F.y, Go4F.z);
+                    transform.position = Pos4f;
+                    break;
+                case "Go5f":
+                    Vector3 Go5F = portal.portal.transform.position;
+                    Vector3 Pos5f = new Vector3(Go5F.x - 3f, Go5F.y, Go5F.z);
+                    transform.position = Pos5f;
+                    break;
+
+                // 층 이동 포탈(아래로)
+                case "Down2f":
+                    Vector3 Down2F = portal.portal.transform.position;
+                    Vector3 PosDown2f = new Vector3(Down2F.x + 3f, Down2F.y, Down2F.z);
+                    transform.position = PosDown2f;
+                    break;
+                case "Down3f":
+                    Vector3 Down3F = portal.portal.transform.position;
+                    Vector3 PosDown3f = new Vector3(Down3F.x + 3f, Down3F.y, Down3F.z);
+                    transform.position = PosDown3f;
+                    break;
+                case "Down4f":
+                    Vector3 Down4F = portal.portal.transform.position;
+                    Vector3 PosDown4f = new Vector3(Down4F.x + 3f, Down4F.y, Down4F.z);
+                    transform.position = PosDown4f;
+                    break;
+                case "Down5f":
+                    Vector3 Down5F = portal.portal.transform.position;
+                    Vector3 PosDown5f = new Vector3(Down5F.x + 3f, Down5F.y, Down5F.z);
+                    transform.position = PosDown5f;
+                    break;
+            }
+        }
+
+    }
+
+    void DoorPortalPlayerReposition(string type)
+    {
+        Vector3 classRoom = portal.portal.transform.position;
+        Vector3 classPos = new Vector3(classRoom.x + 4f, classRoom.y, classRoom.z);
+        gameManager.NextStage(classPos, type);
     }
 }
