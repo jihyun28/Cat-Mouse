@@ -112,28 +112,56 @@ public class CatMove : MonoBehaviour
         {
             switch (portal.type)
             {
-                // 교실 이동
+                // 일반 교실 IN
                 case "InClass":
-                    Vector3 classRoom1 = portal.portal.transform.position;
-                    Vector3 classPos1 = new Vector3(classRoom1.x + 4f, classRoom1.y, classRoom1.z);
-                    //transform.position = classPos1;
-                    gameManager.NextStage(classPos1, portal.type);
+                    DoorPortalPlayerReposition(portal.type);
                     break;
+                case "InClass2f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass3f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass4f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "InClass5f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+                    // 특정 교실 IN
                 case "InArtRoom":
-                    Vector3 classRoom2 = portal.portal.transform.position;
-                    Vector3 classPos2 = new Vector3(classRoom2.x + 4f, classRoom2.y, classRoom2.z);
-                    gameManager.NextStage(classPos2,portal.type);
+                    DoorPortalPlayerReposition(portal.type);
                     break;
+                case "InMusicRoom":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+                // 일반 교실 OUT
                 case "OutClass":
-                    Vector3 classRoom3 = portal.portal.transform.position;
-                    Vector3 classPos3 = new Vector3(classRoom3.x + 4f, classRoom3.y, classRoom3.z);
-                    gameManager.NextStage(classPos3,portal.type);
+                    DoorPortalPlayerReposition(portal.type);
                     break;
+                case "OutClass2f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass3f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass4f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+                case "OutClass5f":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
+                    // 특정 교실 OUT
                 case "OutArt":
-                    Vector3 classRoom4 = portal.portal.transform.position;
-                    Vector3 classPos4 = new Vector3(classRoom4.x + 4f, classRoom4.y, classRoom4.z);
-                    gameManager.NextStage(classPos4, portal.type);
+                    DoorPortalPlayerReposition(portal.type);
                     break;
+                case "OutMusic":
+                    DoorPortalPlayerReposition(portal.type);
+                    break;
+
 
                 // 층 이동 포탈(위로)
                 case "Go2f":
@@ -186,6 +214,13 @@ public class CatMove : MonoBehaviour
     public void VelocityZero()
     {
         rigid.velocity = Vector2.zero;
+    }
+
+    void DoorPortalPlayerReposition(string type)
+    {
+        Vector3 classRoom = portal.portal.transform.position;
+        Vector3 classPos = new Vector3(classRoom.x + 4f, classRoom.y, classRoom.z);
+        gameManager.NextStage(classPos, type);
     }
 
 }
