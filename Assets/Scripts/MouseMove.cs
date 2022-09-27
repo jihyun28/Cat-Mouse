@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public Portal portal;
     public GameManager gameManager;
     public float maxSpeed;
     public float jumpPower;
